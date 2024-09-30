@@ -21,8 +21,11 @@
  * @returns a person with a modified age
  */
 export function celebrateBirthday(person) {
-  person.age++
-  return person;
+  const newPerson = {
+    name: person.name,
+    age: person.age + 1
+  }
+  return newPerson;
 }
 
 /**
@@ -33,8 +36,7 @@ export function celebrateBirthday(person) {
  * @returns a person with a modified name.
  */
 export function getMarried(person, newName) {
-  person.name = newName
-  return person;
+  return { name: newName, age: person.age }
 }
 
 /**
@@ -46,8 +48,7 @@ export function getMarried(person, newName) {
  * @returns the house with the new color
  */
 export function paintHouse(house, newColor) {
-  house.color = newColor;
-  return house;
+  return { color: newColor, rooms: house.rooms };
 }
 
 /**
@@ -59,8 +60,8 @@ export function paintHouse(house, newColor) {
  * @returns The new queue.
  */
 export function goToSecurityCheck(queue, me) {
-  queue.push(me);
-  return queue;
+  const newQ = [...queue, me];
+  return newQ;
 }
 
 /**
@@ -72,8 +73,9 @@ export function goToSecurityCheck(queue, me) {
  * @returns The new queue.
  */
 export function applyFastLane(queue, me) {
-  queue.unshift(me);
-  return queue;
+  const newQ = [...queue];
+  newQ.unshift(me);
+  return newQ;
 }
 
 /**
@@ -89,8 +91,9 @@ export function doSecretAgentThing(queue, me, position) {
   if(position >= queue.length) {
     throw new Error('Invalid position, the queue is too short.');
   }
-  queue[position] = me;
-  return queue;
+  const newQ = [...queue];
+  newQ[position] = me;
+  return newQ;
 }
 
 /**
@@ -105,6 +108,7 @@ export function doPoliceIntervention(queue, position) {
   if(position >= queue.length) {
     throw new Error('Invalid position, the queue is too short.');
   }
-  queue.splice(position, 1);
-  return queue;
+  const newQ = [...queue];
+  newQ.splice(position, 1);
+  return newQ;
 }
